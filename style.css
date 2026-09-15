@@ -1,0 +1,1740 @@
+/* ==========================================================================
+   AERO CLUB VIGNAN - OATH TAKING CEREMONY INVITATION
+   Styles & 3D Interactive Animation Engine
+   ========================================================================== */
+
+:root {
+  --color-navy-dark: #071E3D;
+  --color-navy-blue: #0B3B60;
+  --color-royal-blue: #114B7F;
+  --color-azure-sky: #2A80D2;
+  --color-sky-light: #EBF4FC;
+  --color-cloud-white: #FFFFFF;
+  --color-gold: #D4AF37;
+  --color-gold-light: #F3E5AB;
+  --color-gold-dark: #997A15;
+  --color-text-main: #0B2B4A;
+  --color-text-muted: #4A6B8A;
+  --font-serif: 'Bodoni Moda', Georgia, serif;
+  --font-script: 'Alex Brush', cursive;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --shadow-grand: 0 25px 60px -15px rgba(7, 30, 61, 0.4), 0 0 40px rgba(42, 128, 210, 0.2);
+  --shadow-page: 0 15px 35px rgba(11, 59, 96, 0.15);
+  --radius-card: 20px;
+}
+
+/* Reset & Base Setup */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #071E3D;
+  font-family: var(--font-sans);
+  color: var(--color-text-main);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   Ambient Sky & Clouds Background
+   ========================================================================== */
+.sky-background {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(circle at 50% 20%, #4FA3E3 0%, #1C67A8 45%, #0A2D4D 100%);
+  overflow: hidden;
+}
+
+.cloud-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat-x;
+  pointer-events: none;
+}
+
+.cloud-layer.layer-1 {
+  background: radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  animation: floatClouds 35s linear infinite alternate;
+}
+
+.cloud-layer.layer-2 {
+  background: radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
+  animation: floatClouds 25s linear infinite alternate-reverse;
+}
+
+.cloud-layer.layer-3 {
+  background: radial-gradient(circle at 10% 30%, rgba(212, 175, 55, 0.12) 0%, transparent 40%);
+}
+
+@keyframes floatClouds {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.08) translate(-30px, 15px); }
+}
+
+/* ==========================================================================
+   Aircraft Fleet Animations (Diverse Altitudes, Speeds & Contrails)
+   ========================================================================== */
+.sky-aircraft {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.aircraft-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 8px rgba(7, 30, 61, 0.3));
+}
+
+.beacon-glow {
+  animation: flashBeacon 1s infinite alternate;
+}
+
+@keyframes flashBeacon {
+  0% { opacity: 0.3; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.3); }
+}
+
+.prop-spin {
+  animation: spinProp 0.1s linear infinite;
+  transform-origin: 66px 22px;
+}
+
+@keyframes spinProp {
+  100% { transform: rotate(360deg); }
+}
+
+/* 1. Supersonic Fighter Jet (Fast, Left to Right, High Altitude) */
+.plane-jet {
+  top: 12%;
+  left: -140px;
+  width: 75px;
+  height: 38px;
+  animation: flyJet 14s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation-delay: 0.8s;
+}
+
+.jet-contrail {
+  position: absolute;
+  top: 18px;
+  left: -150px;
+  width: 150px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), rgba(212, 175, 55, 0.5));
+  border-radius: 2px;
+  filter: blur(1px);
+}
+
+@keyframes flyJet {
+  0% {
+    transform: translate(0, 0) rotate(-4deg);
+    opacity: 0;
+  }
+  5% { opacity: 0.9; }
+  90% { opacity: 0.9; }
+  100% {
+    transform: translate(calc(100vw + 300px), -60px) rotate(-4deg);
+    opacity: 0;
+  }
+}
+
+/* 2. Commercial Airliner (Smooth, Right to Left, Mid Altitude) */
+.plane-airliner {
+  top: 26%;
+  right: -160px;
+  width: 95px;
+  height: 48px;
+  animation: flyAirliner 22s linear infinite;
+  animation-delay: 4s;
+}
+
+.airliner-contrail {
+  position: absolute;
+  top: 24px;
+  right: -180px;
+  width: 180px;
+  height: 4px;
+  background: linear-gradient(270deg, transparent, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.3));
+  filter: blur(1.5px);
+}
+
+@keyframes flyAirliner {
+  0% {
+    transform: translate(0, 0) rotate(-2deg);
+    opacity: 0;
+  }
+  5% { opacity: 0.85; }
+  92% { opacity: 0.85; }
+  100% {
+    transform: translate(calc(-100vw - 320px), 40px) rotate(-2deg);
+    opacity: 0;
+  }
+}
+
+/* 3. Aerobatic Propeller (Left to Right, Dynamic Climb) */
+.plane-propeller {
+  top: 66%;
+  left: -120px;
+  width: 65px;
+  height: 40px;
+  animation: flyPropeller 18s ease-in-out infinite;
+  animation-delay: 7s;
+}
+
+.propeller-smoke {
+  position: absolute;
+  top: 22px;
+  left: -120px;
+  width: 120px;
+  height: 4px;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.5) 0, rgba(255,255,255,0.5) 8px, transparent 8px, transparent 16px);
+  filter: blur(1px);
+}
+
+@keyframes flyPropeller {
+  0% {
+    transform: translate(0, 0) rotate(-8deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.85; }
+  45% { transform: translate(calc(45vw), -100px) rotate(6deg); }
+  75% { transform: translate(calc(75vw), -50px) rotate(-6deg); }
+  90% { opacity: 0.85; }
+  100% {
+    transform: translate(calc(100vw + 220px), -140px) rotate(2deg);
+    opacity: 0;
+  }
+}
+
+/* 4. Origami Paper Plane 1 (Swooping Glider Left to Right) */
+.plane-paper-1 {
+  top: 44%;
+  left: -80px;
+  width: 52px;
+  height: 32px;
+  animation: flyPaper1 19s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+@keyframes flyPaper1 {
+  0% {
+    transform: translate(0, 0) rotate(4deg);
+    opacity: 0;
+  }
+  8% { opacity: 0.75; }
+  30% { transform: translate(calc(30vw), -30px) rotate(-6deg); }
+  60% { transform: translate(calc(60vw), 25px) rotate(8deg); }
+  90% { opacity: 0.75; }
+  100% {
+    transform: translate(calc(100vw + 140px), -15px) rotate(2deg);
+    opacity: 0;
+  }
+}
+
+/* 5. Origami Paper Plane 2 (Swooping Right to Left) */
+.plane-paper-2 {
+  top: 19%;
+  right: -80px;
+  width: 50px;
+  height: 30px;
+  animation: flyPaper2 21s ease-in-out infinite;
+  animation-delay: 10s;
+}
+
+@keyframes flyPaper2 {
+  0% {
+    transform: translate(0, 0) rotate(-4deg);
+    opacity: 0;
+  }
+  8% { opacity: 0.8; }
+  40% { transform: translate(calc(-40vw), 40px) rotate(6deg); }
+  75% { transform: translate(calc(-75vw), -25px) rotate(-8deg); }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translate(calc(-100vw - 140px), 25px) rotate(-2deg);
+    opacity: 0;
+  }
+}
+
+/* 6. Drone / UAV (Steady Cruise with Beacon Lights) */
+.plane-drone {
+  top: 78%;
+  left: -80px;
+  width: 45px;
+  height: 28px;
+  animation: flyDrone 26s linear infinite;
+  animation-delay: 14s;
+}
+
+@keyframes flyDrone {
+  0% {
+    transform: translate(0, 0) rotate(2deg);
+    opacity: 0;
+  }
+  6% { opacity: 0.8; }
+  92% { opacity: 0.8; }
+  100% {
+    transform: translate(calc(100vw + 120px), -50px) rotate(-2deg);
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Royal Blue Stage Curtains
+   ========================================================================== */
+.curtain-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  pointer-events: auto;
+  transition: visibility 0.3s ease;
+}
+
+.curtain-stage.opened {
+  pointer-events: none;
+}
+
+.curtain {
+  position: relative;
+  flex: 1;
+  height: 100%;
+  display: flex;
+  background: linear-gradient(
+    90deg,
+    #05152B 0%,
+    #0B3056 12%,
+    #134E84 25%,
+    #0A2D4F 38%,
+    #185B99 50%,
+    #092644 63%,
+    #16548E 76%,
+    #061D36 88%,
+    #031021 100%
+  );
+  background-size: 140px 100%;
+  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8), 0 10px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 2.2s cubic-bezier(0.7, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.curtain-left {
+  transform-origin: left center;
+  border-right: 2px solid rgba(212, 175, 55, 0.4);
+}
+
+.curtain-right {
+  transform-origin: right center;
+  border-left: 2px solid rgba(212, 175, 55, 0.4);
+}
+
+/* Curtain Pleat Shadows */
+.curtain-pleat {
+  flex: 1;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    transparent 45%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+}
+
+/* Gold Tiebacks with Tassels */
+.curtain-tieback {
+  position: absolute;
+  top: 60%;
+  width: 40px;
+  height: 10px;
+  background: linear-gradient(180deg, #F3E5AB 0%, #D4AF37 50%, #997A15 100%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.left-tie { left: 20px; }
+.right-tie { right: 20px; }
+
+.gold-tassel {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  width: 16px;
+  height: 35px;
+  background: linear-gradient(180deg, #D4AF37 0%, #997A15 80%, #685006 100%);
+  clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+}
+
+/* Valance at Top */
+.curtain-valance {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background: linear-gradient(180deg, #06192E 0%, #0E3E6B 70%, #092847 100%);
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+  z-index: 105;
+  transition: transform 1.6s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.valance-swag {
+  flex: 1;
+  margin: 0 10px;
+  background: radial-gradient(ellipse at 50% 0%, #165691 0%, #0A2F52 80%);
+  border-bottom-left-radius: 50% 40px;
+  border-bottom-right-radius: 50% 40px;
+  border-bottom: 3px solid #D4AF37;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.valance-fringe {
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: repeating-linear-gradient(
+    90deg,
+    #D4AF37 0,
+    #D4AF37 4px,
+    #997A15 4px,
+    #997A15 8px
+  );
+}
+
+/* Center Stage Seal (Tap to open) */
+.curtain-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 110;
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.8s ease;
+}
+
+.curtain-seal:hover {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.seal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #185A9D 0%, #0B2B4A 70%, #051829 100%);
+  border: 4px double #D4AF37;
+  box-shadow: 0 0 35px rgba(212, 175, 55, 0.6), inset 0 0 20px rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  text-align: center;
+  animation: pulseSeal 2.5s ease-in-out infinite;
+}
+
+@keyframes pulseSeal {
+  0%, 100% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.5), inset 0 0 15px rgba(0, 0, 0, 0.6); }
+  50% { box-shadow: 0 0 45px rgba(212, 175, 55, 0.85), 0 0 15px rgba(255, 255, 255, 0.4); }
+}
+
+.mini-wings-svg {
+  width: 60px;
+  height: 30px;
+  margin-bottom: 6px;
+}
+
+.seal-text {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #F8FBFF;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.seal-subtext {
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  color: var(--color-gold-light);
+  margin-top: 5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Stage Curtain Opened State Animations */
+.curtain-stage.is-open .curtain-left {
+  transform: translateX(-100%) scaleX(0.85);
+}
+
+.curtain-stage.is-open .curtain-right {
+  transform: translateX(100%) scaleX(0.85);
+}
+
+.curtain-stage.is-open .curtain-valance {
+  transform: translateY(-80px);
+}
+
+.curtain-stage.is-open .curtain-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.4);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   Main Application Container
+   ========================================================================== */
+.invitation-app {
+  position: relative;
+  z-index: 10;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px 20px;
+}
+
+/* Top Navigation Bar */
+.top-nav-bar {
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: rgba(7, 30, 61, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 40px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+}
+
+.brand-sub {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--color-gold);
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.timer-badge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(11, 43, 74, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  padding: 3px 10px 3px 6px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timer-badge:hover {
+  background: rgba(11, 43, 74, 0.95);
+  border-color: var(--color-gold);
+}
+
+.timer-ring {
+  transform: rotate(-90deg);
+}
+
+.timer-text {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gold-light);
+  min-width: 28px;
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(212, 175, 55, 0.3);
+  border-color: var(--color-gold);
+  transform: scale(1.08);
+}
+
+/* ==========================================================================
+   3D Card Pop-Up & Stage Engine
+   ========================================================================== */
+.card-stage-wrapper {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px;
+  padding: 10px 0;
+}
+
+.card-3d-scene {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 520px;
+  transform-style: preserve-3d;
+  opacity: 0;
+  transform: translateY(80px) scale(0.85) rotateX(10deg);
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.4s ease;
+}
+
+/* Slower majestic pop-up after curtains start */
+.card-3d-scene.popped-up {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotateX(0deg);
+}
+
+.invitation-book {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* Individual Card Pages */
+.card-page {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-grand);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F0F6FC 50%, #E3EFF9 100%);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.95s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.7s ease, visibility 0.95s ease;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.card-page.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0) rotateY(0deg);
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.card-page.prev-flipped {
+  visibility: visible;
+  opacity: 0;
+  transform: translateX(-120%) rotateY(-25deg) scale(0.9);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.card-page.next-queued {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(120%) rotateY(25deg) scale(0.9);
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* Inner Frame with Delicate Double Borders */
+.card-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #0B3B60;
+  border-radius: var(--radius-card);
+  padding: 12px;
+  background: radial-gradient(circle at 50% 15%, #FFFFFF 0%, #F5F9FD 50%, #E5F0FA 100%);
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 20px rgba(11, 59, 96, 0.08);
+}
+
+/* ==========================================================================
+   Unique Aeronautical Corner Ornaments
+   ========================================================================== */
+.corner-ornament {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.corner-ornament.top-left { top: 6px; left: 6px; }
+.corner-ornament.top-right { top: 6px; right: 6px; }
+.corner-ornament.bottom-left { bottom: 6px; left: 6px; }
+.corner-ornament.bottom-right { bottom: 6px; right: 6px; }
+
+.corner-ornament svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 3px rgba(11, 59, 96, 0.2));
+}
+
+/* ==========================================================================
+   PAGE 1: Ceremonial Boarding Pass (Matches User Invitation Card Reference)
+   ========================================================================== */
+.pass-content-grid {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 50% 20%, #E3F2FD 0%, #C9E2F8 45%, #AED3F4 100%);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(11, 59, 96, 0.25);
+}
+
+/* Main Body of Pass */
+.pass-main-body {
+  position: relative;
+  flex: 3.2;
+  height: 100%;
+  padding: 24px 30px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+/* Skydiver Parachute Art */
+.floating-skydiver {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  width: 110px;
+  height: 180px;
+  z-index: 2;
+  filter: drop-shadow(0 8px 12px rgba(11, 59, 96, 0.2));
+  animation: skydiverFloat 5s ease-in-out infinite alternate;
+}
+
+@keyframes skydiverFloat {
+  0% { transform: translateY(0) rotate(-3deg); }
+  100% { transform: translateY(-12px) rotate(3deg); }
+}
+
+.skydiver-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Paper Airplane Flight Trail Art */
+.flight-trail-art {
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  width: 120px;
+  height: 60px;
+  z-index: 2;
+  animation: planeFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes planeFloat {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(6px, -6px); }
+}
+
+.trail-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Ceremonial Crest / Aero Club Logo */
+.ceremonial-crest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 4;
+}
+
+.wings-emblem {
+  width: 110px;
+  height: 48px;
+  margin-bottom: 2px;
+}
+
+.crest-wings-svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 3px 5px rgba(11, 59, 96, 0.25));
+}
+
+.club-title {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: 3.5px;
+  color: #0B3B60;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.ribbon-banner {
+  display: inline-block;
+  background: linear-gradient(135deg, #0B3B60 0%, #1A538C 100%);
+  color: #FFFFFF;
+  padding: 3px 20px;
+  border-radius: 4px;
+  margin: 4px 0 3px;
+  box-shadow: 0 3px 8px rgba(11, 59, 96, 0.3);
+  position: relative;
+}
+
+.ribbon-text {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+}
+
+.motto-tagline {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #1A538C;
+  text-transform: uppercase;
+}
+
+/* Invitation Hero Title */
+.invitation-hero {
+  margin: 6px 0;
+  z-index: 4;
+}
+
+.cordial-text {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #0B3B60;
+  margin-bottom: 4px;
+}
+
+.ceremony-type-lockup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.oath-taking-title {
+  font-family: var(--font-serif);
+  font-size: 2.55rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #082845;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(11, 59, 96, 0.15);
+  line-height: 1;
+}
+
+.ceremony-script {
+  font-family: var(--font-script);
+  font-size: 3.2rem;
+  color: #0B3B60;
+  font-weight: 400;
+  line-height: 0.9;
+  transform: rotate(-4deg);
+  text-shadow: 0 2px 4px rgba(11, 59, 96, 0.12);
+}
+
+/* Separator */
+.decorative-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 75%;
+  gap: 12px;
+  margin: 4px 0 10px;
+}
+
+.sep-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #0B3B60, transparent);
+}
+
+.sep-diamond {
+  color: #D4AF37;
+  font-size: 0.9rem;
+}
+
+/* Metadata Row (Date, Time, Venue) */
+.event-meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.35fr;
+  gap: 14px;
+  width: 100%;
+  max-width: 680px;
+  z-index: 4;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(11, 59, 96, 0.15);
+  box-shadow: 0 4px 10px rgba(11, 59, 96, 0.06);
+  text-align: left;
+  gap: 10px;
+}
+
+.meta-icon-box {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meta-svg {
+  width: 26px;
+  height: 26px;
+}
+
+.meta-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-lbl {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #4A6B8A;
+}
+
+.meta-val {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0B2B4A;
+  line-height: 1.2;
+}
+
+.venue-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+/* Footer Value Note */
+.pass-footer {
+  width: 100%;
+  padding-top: 6px;
+  border-top: 1px solid rgba(11, 59, 96, 0.2);
+  z-index: 4;
+}
+
+.valued-text {
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #0B3B60;
+  text-transform: uppercase;
+}
+
+/* Perforated Boarding Stub (Right Flap) */
+.pass-stub-section {
+  position: relative;
+  flex: 1.1;
+  height: 100%;
+  background: linear-gradient(180deg, #092C4E 0%, #0B3B60 50%, #061D33 100%);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 14px 12px;
+  border-left: 1px dashed rgba(255, 255, 255, 0.4);
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.perforation-divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -12px;
+  width: 24px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.notch {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+}
+
+.top-notch { top: -12px; }
+.bottom-notch { bottom: -12px; }
+
+.stub-slogan {
+  margin-top: 10px;
+}
+
+.take-oath-quote {
+  font-family: var(--font-script);
+  font-size: 1.6rem;
+  line-height: 1.15;
+  color: #F8FBFF;
+}
+
+.quote-italic {
+  font-family: var(--font-script);
+  font-size: 1.8rem;
+  color: var(--color-gold-light);
+  display: block;
+  margin-top: 2px;
+}
+
+.stub-icon {
+  width: 40px;
+  height: 40px;
+  margin: 6px 0;
+  opacity: 0.9;
+}
+
+.mini-chute-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.stub-barcode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.barcode-bars {
+  width: 85%;
+  height: 36px;
+  background: repeating-linear-gradient(
+    90deg,
+    #FFFFFF 0,
+    #FFFFFF 2px,
+    transparent 2px,
+    transparent 5px,
+    #FFFFFF 5px,
+    #FFFFFF 9px,
+    transparent 9px,
+    transparent 11px,
+    #FFFFFF 11px,
+    #FFFFFF 12px,
+    transparent 12px,
+    transparent 15px,
+    #FFFFFF 15px,
+    #FFFFFF 19px,
+    transparent 19px,
+    transparent 22px
+  );
+  border-radius: 2px;
+}
+
+.barcode-no {
+  font-size: 0.62rem;
+  letter-spacing: 2px;
+  color: var(--color-gold-light);
+  margin-top: 4px;
+  font-family: monospace;
+}
+
+.stub-action-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: pulseHint 2s infinite ease-in-out;
+  cursor: pointer;
+}
+
+@keyframes pulseHint {
+  0%, 100% { transform: translateX(0); opacity: 0.8; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
+
+.swipe-arrow {
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   PAGE 2: Ceremony Schedule & Highlights
+   ========================================================================== */
+.schedule-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 16px 24px 14px;
+  background: radial-gradient(ellipse at 50% 10%, #FFFFFF 0%, #F1F7FC 60%, #E2EEF8 100%);
+  border-radius: 12px;
+}
+
+.page-inner-header {
+  text-align: center;
+}
+
+.header-pre {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--color-azure-sky);
+  text-transform: uppercase;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #0B3B60;
+  margin: 2px 0;
+}
+
+.heading-gold-divider {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  margin: 4px auto 0;
+  border-radius: 2px;
+}
+
+/* Timeline */
+.timeline-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 8px 0;
+  position: relative;
+}
+
+.timeline-grid::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 95px;
+  width: 2px;
+  background: linear-gradient(180deg, #D4AF37, #0B3B60, #D4AF37);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  gap: 16px;
+}
+
+.time-stamp {
+  width: 85px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #0B3B60;
+  text-align: right;
+  letter-spacing: 0.5px;
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  min-width: 14px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid #0B3B60;
+  box-shadow: 0 0 8px rgba(11, 59, 96, 0.4);
+  z-index: 2;
+}
+
+.timeline-item.highlight-item .timeline-dot {
+  background: #D4AF37;
+  border-color: #0B3B60;
+  transform: scale(1.25);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+.timeline-card {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(11, 59, 96, 0.12);
+  padding: 6px 14px;
+  border-radius: 8px;
+  box-shadow: 0 3px 8px rgba(11, 59, 96, 0.05);
+  text-align: left;
+}
+
+.timeline-item.highlight-item .timeline-card {
+  background: linear-gradient(135deg, #0B3B60 0%, #154877 100%);
+  color: #FFFFFF;
+  border-color: var(--color-gold);
+}
+
+.timeline-card h3 {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #0B3B60;
+  margin-bottom: 2px;
+}
+
+.timeline-item.highlight-item .timeline-card h3 {
+  color: #FFFFFF;
+}
+
+.timeline-card p {
+  font-size: 0.74rem;
+  color: #4A6B8A;
+  line-height: 1.25;
+}
+
+.timeline-item.highlight-item .timeline-card p {
+  color: #E0EBF5;
+}
+
+.badge-gold {
+  display: inline-block;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #0B2B4A;
+  background: #D4AF37;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-bottom: 3px;
+}
+
+.oath-quote-banner {
+  background: rgba(11, 59, 96, 0.06);
+  border-left: 3px solid #D4AF37;
+  padding: 6px 14px;
+  border-radius: 0 8px 8px 0;
+  text-align: center;
+}
+
+.oath-quote-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.82rem;
+  color: #0B3B60;
+  letter-spacing: 0.5px;
+}
+
+/* ==========================================================================
+   PAGE 3: Venue, Map & RSVP
+   ========================================================================== */
+.location-page-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 20px 28px;
+  background: radial-gradient(ellipse at 50% 10%, #FFFFFF 0%, #F1F7FC 60%, #E2EEF8 100%);
+  border-radius: 12px;
+  gap: 16px;
+}
+
+.location-content-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+  flex: 1;
+}
+
+.venue-info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.92);
+  padding: 22px 24px;
+  border-radius: 14px;
+  border: 1px solid rgba(11, 59, 96, 0.18);
+  box-shadow: 0 8px 24px rgba(11, 59, 96, 0.09);
+  position: relative;
+  text-align: left;
+}
+
+.venue-badge-icon {
+  width: 38px;
+  height: 38px;
+  background: #E8F2FA;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  border: 1px solid rgba(11, 59, 96, 0.2);
+}
+
+.pin-svg {
+  width: 22px;
+  height: 22px;
+}
+
+.venue-name {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #0B3B60;
+  line-height: 1.25;
+}
+
+.venue-sub {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1A538C;
+  margin: 3px 0 8px;
+}
+
+.venue-address {
+  font-style: normal;
+  font-size: 0.78rem;
+  color: #4A6B8A;
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.action-buttons-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.btn-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #0B3B60 0%, #1A538C 100%);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(11, 59, 96, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(11, 59, 96, 0.35);
+  background: linear-gradient(135deg, #07253D 0%, #134575 100%);
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  color: #0B3B60;
+  border: 1.5px solid #0B3B60;
+}
+
+.btn-secondary:hover {
+  background: #EBF4FC;
+  transform: translateY(-2px);
+}
+
+.btn-glyph {
+  font-size: 1rem;
+}
+
+/* Map Preview Card */
+.interactive-map-preview {
+  height: 100%;
+  min-height: 230px;
+}
+
+.map-container-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 230px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #0B3B60;
+  box-shadow: 0 8px 20px rgba(11, 59, 96, 0.15);
+}
+
+.map-container-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.map-overlay-banner {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  background: rgba(7, 30, 61, 0.88);
+  backdrop-filter: blur(8px);
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2ECC71;
+  box-shadow: 0 0 8px #2ECC71;
+  animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+.rsvp-contact-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid rgba(11, 59, 96, 0.2);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.contact-pill {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pill-label {
+  color: #4A6B8A;
+  font-weight: 700;
+}
+
+.pill-val {
+  color: #0B3B60;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.rsvp-status-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #D4AF37;
+  background: #0B3B60;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+/* ==========================================================================
+   Bottom Navigation & Pagination Dots
+   ========================================================================== */
+.bottom-pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 20;
+  padding: 4px 12px;
+}
+
+.nav-arrow-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(7, 30, 61, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.nav-arrow-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-arrow-btn:hover:not(:disabled) {
+  background: rgba(212, 175, 55, 0.4);
+  border-color: var(--color-gold);
+  transform: scale(1.1);
+}
+
+.nav-arrow-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination-dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(7, 30, 61, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  width: 28px;
+  border-radius: 10px;
+  background: var(--color-gold);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+/* ==========================================================================
+   Responsive Adaptations (Laptops, Tablets, Mobile iOS & Android)
+   ========================================================================== */
+@media (max-width: 900px) {
+  .card-3d-scene {
+    height: 560px;
+  }
+
+  .pass-content-grid {
+    flex-direction: column;
+  }
+
+  .pass-stub-section {
+    flex-direction: row;
+    padding: 10px 14px;
+    border-left: none;
+    border-top: 1px dashed rgba(255, 255, 255, 0.4);
+  }
+
+  .perforation-divider {
+    display: none;
+  }
+
+  .take-oath-quote {
+    font-size: 1.1rem;
+    text-align: left;
+  }
+
+  .quote-italic {
+    display: inline;
+    font-size: 1.1rem;
+  }
+
+  .stub-icon {
+    display: none;
+  }
+
+  .barcode-bars {
+    width: 100px;
+    height: 24px;
+  }
+
+  .location-content-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .interactive-map-preview {
+    min-height: 150px;
+  }
+
+  .map-container-frame {
+    min-height: 150px;
+  }
+}
+
+@media (max-width: 640px) {
+  .invitation-app {
+    padding: 8px 10px 12px;
+  }
+
+  .brand-title {
+    font-size: 0.95rem;
+  }
+
+  .brand-sub {
+    display: none;
+  }
+
+  .card-3d-scene {
+    height: calc(100vh - 125px);
+    max-height: 600px;
+  }
+
+  .card-frame {
+    padding: 8px;
+  }
+
+  .corner-ornament {
+    width: 32px;
+    height: 32px;
+  }
+
+  .pass-main-body {
+    padding: 12px 10px 8px;
+  }
+
+  .floating-skydiver {
+    width: 65px;
+    height: 110px;
+    left: 8px;
+    top: 20px;
+  }
+
+  .flight-trail-art {
+    width: 80px;
+    height: 40px;
+    right: 8px;
+    top: 15px;
+  }
+
+  .wings-emblem {
+    width: 85px;
+    height: 36px;
+  }
+
+  .club-title {
+    font-size: 1.3rem;
+  }
+
+  .oath-taking-title {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+  }
+
+  .ceremony-script {
+    font-size: 2.2rem;
+  }
+
+  .event-meta-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .meta-item {
+    padding: 4px 8px;
+  }
+
+  .meta-val {
+    font-size: 0.78rem;
+  }
+
+  .timeline-grid::before {
+    left: 70px;
+  }
+
+  .time-stamp {
+    width: 65px;
+    font-size: 0.7rem;
+  }
+
+  .timeline-card h3 {
+    font-size: 0.78rem;
+  }
+
+  .timeline-card p {
+    font-size: 0.68rem;
+  }
+
+  .venue-info-card {
+    padding: 10px 12px;
+  }
+
+  .venue-name {
+    font-size: 0.95rem;
+  }
+
+  .venue-address {
+    font-size: 0.7rem;
+    margin-bottom: 8px;
+  }
+
+  .btn-action {
+    padding: 7px 10px;
+    font-size: 0.74rem;
+  }
+
+  .interactive-map-preview {
+    min-height: 120px;
+  }
+
+  .map-container-frame {
+    min-height: 120px;
+  }
+}

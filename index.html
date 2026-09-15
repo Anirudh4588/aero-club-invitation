@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Aero Club Vignan - Oath Taking Ceremony Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Background Sky & Ambient Clouds & Aircraft Fleet -->
+  <div class="sky-background">
+    <div class="cloud-layer layer-1"></div>
+    <div class="cloud-layer layer-2"></div>
+    <div class="cloud-layer layer-3"></div>
+
+    <!-- Airplane Fleet Flying Across the Sky (All Correctly Forward-Facing) -->
+    <!-- 1. Fighter Jet with Contrail (Left to Right) -->
+    <div class="sky-aircraft plane-jet">
+      <div class="jet-contrail"></div>
+      <svg viewBox="0 0 80 40" class="aircraft-svg">
+        <!-- Fuselage (Nose at Right x=78, Tail at Left x=5) -->
+        <polygon points="5,20 60,6 78,20 60,34 5,20" fill="rgba(255,255,255,0.9)"/>
+        <!-- Swept Wings -->
+        <polygon points="25,20 50,2 62,20 50,38 25,20" fill="rgba(212,175,55,0.85)"/>
+        <line x1="15" y1="20" x2="75" y2="20" stroke="#0B3B60" stroke-width="1.5"/>
+        <circle cx="76" cy="20" r="2.5" fill="#E74C3C" class="beacon-glow"/>
+      </svg>
+    </div>
+
+    <!-- 2. Commercial Airliner (Right to Left - Nose at Left x=10, Tail at Right x=90) -->
+    <div class="sky-aircraft plane-airliner">
+      <div class="airliner-contrail"></div>
+      <svg viewBox="0 0 100 50" class="aircraft-svg">
+        <!-- Fuselage facing LEFT -->
+        <path d="M10 25 Q 30 20, 80 22 L 95 15 L 88 25 L 95 35 L 80 28 Q 30 30, 10 25 Z" fill="rgba(255,255,255,0.88)"/>
+        <!-- Wings swept backwards to Right -->
+        <polygon points="55,24 75,2 62,2 40,24" fill="rgba(255,255,255,0.95)"/>
+        <polygon points="55,26 75,48 62,48 40,26" fill="rgba(255,255,255,0.95)"/>
+        <!-- Wingtip Beacons -->
+        <circle cx="75" cy="2" r="2" fill="#E74C3C" class="beacon-glow"/>
+        <circle cx="75" cy="48" r="2" fill="#2ECC71" class="beacon-glow"/>
+      </svg>
+    </div>
+
+    <!-- 3. Aerobatic Propeller Aircraft (Left to Right - Propeller at Right x=66) -->
+    <div class="sky-aircraft plane-propeller">
+      <div class="propeller-smoke"></div>
+      <svg viewBox="0 0 70 45" class="aircraft-svg">
+        <!-- Tail at Left, Nose at Right -->
+        <ellipse cx="40" cy="22" rx="24" ry="7" fill="rgba(255,255,255,0.9)"/>
+        <rect x="32" y="5" width="10" height="34" rx="2" fill="rgba(212,175,55,0.85)"/>
+        <polygon points="16,17 6,11 10,22 6,33 16,27" fill="rgba(255,255,255,0.8)"/>
+        <!-- Spinning Propeller at Front Right -->
+        <line x1="64" y1="10" x2="64" y2="34" stroke="rgba(255,255,255,0.95)" stroke-width="2.5" class="prop-spin"/>
+      </svg>
+    </div>
+
+    <!-- 4. Origami Paper Airplane (Left to Right - Point at Right x=55) -->
+    <div class="sky-aircraft plane-paper-1">
+      <svg viewBox="0 0 60 36" class="aircraft-svg">
+        <path d="M5 18 L50 4 L38 20 L55 22 L25 32 L30 22 Z" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M5 18 L38 20" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+
+    <!-- 5. Second Paper Airplane (Right to Left - Point at Left x=5) -->
+    <div class="sky-aircraft plane-paper-2">
+      <svg viewBox="0 0 60 36" class="aircraft-svg">
+        <path d="M55 18 L10 4 L22 20 L5 22 L35 32 L30 22 Z" fill="none" stroke="rgba(243,229,171,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M55 18 L22 20" stroke="rgba(243,229,171,0.5)" stroke-width="1.5" stroke-dasharray="3,3"/>
+      </svg>
+    </div>
+
+    <!-- 6. High-Tech Drone / UAV (Left to Right) -->
+    <div class="sky-aircraft plane-drone">
+      <svg viewBox="0 0 50 30" class="aircraft-svg">
+        <circle cx="25" cy="15" r="5" fill="rgba(255,255,255,0.9)"/>
+        <line x1="10" y1="8" x2="40" y2="22" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+        <line x1="10" y1="22" x2="40" y2="8" stroke="rgba(255,255,255,0.7)" stroke-width="2"/>
+        <circle cx="10" cy="8" r="3" fill="#3498DB"/>
+        <circle cx="40" cy="22" r="3" fill="#3498DB"/>
+        <circle cx="10" cy="22" r="3" fill="#E74C3C"/>
+        <circle cx="40" cy="8" r="3" fill="#2ECC71"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Stage Curtains Overlay (Deep Royal Blue) -->
+  <div class="curtain-stage" id="curtain-stage">
+    <div class="curtain curtain-left" id="curtain-left">
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-tieback left-tie">
+        <div class="gold-tassel"></div>
+      </div>
+    </div>
+    
+    <div class="curtain curtain-right" id="curtain-right">
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-pleat"></div>
+      <div class="curtain-tieback right-tie">
+        <div class="gold-tassel"></div>
+      </div>
+    </div>
+
+    <!-- Valance / Top Drape -->
+    <div class="curtain-valance">
+      <div class="valance-swag"></div>
+      <div class="valance-swag"></div>
+      <div class="valance-swag"></div>
+      <div class="valance-fringe"></div>
+    </div>
+
+    <!-- Opening Stage Badge / Welcome Touch -->
+    <div class="curtain-seal" id="curtain-seal">
+      <div class="seal-inner">
+        <div class="wings-seal-icon">
+          <svg viewBox="0 0 100 50" class="mini-wings-svg">
+            <path d="M50 35 Q30 10 5 20 Q25 25 45 40 Z" fill="#D4AF37"/>
+            <path d="M50 35 Q70 10 95 20 Q75 25 55 40 Z" fill="#D4AF37"/>
+            <circle cx="50" cy="35" r="7" fill="#0B2B4A" stroke="#D4AF37" stroke-width="2"/>
+            <line x1="50" y1="18" x2="50" y2="42" stroke="#D4AF37" stroke-width="2"/>
+          </svg>
+        </div>
+        <span class="seal-text">AERO CLUB VIGNAN</span>
+        <span class="seal-subtext">Tap to Open Ceremony</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invitation Main Experience Container -->
+  <main class="invitation-app" id="invitation-app">
+
+    <!-- Top Floating Header Bar -->
+    <header class="top-nav-bar">
+      <div class="nav-brand">
+        <span class="brand-title">AERO CLUB</span>
+        <span class="brand-sub">VITS HYDERABAD</span>
+      </div>
+
+      <!-- Auto-Flip Progress Timer & Controls -->
+      <div class="nav-controls">
+        <div class="timer-badge" id="timer-badge" title="Auto-turn in 7.0s (Tap to Pause/Resume)">
+          <svg class="timer-ring" width="28" height="28">
+            <circle class="timer-ring-bg" stroke="rgba(255,255,255,0.2)" stroke-width="3" fill="transparent" r="11" cx="14" cy="14"/>
+            <circle class="timer-ring-progress" id="timer-circle" stroke="#D4AF37" stroke-width="3" stroke-dasharray="69.1" stroke-dashoffset="0" stroke-linecap="round" fill="transparent" r="11" cx="14" cy="14"/>
+          </svg>
+          <span class="timer-text" id="timer-label">7.0s</span>
+        </div>
+
+        <button class="icon-btn" id="audio-toggle" aria-label="Toggle Sound" title="Sound Effects">
+          <span class="btn-icon" id="audio-icon">🔊</span>
+        </button>
+
+        <button class="icon-btn" id="replay-btn" aria-label="Replay Experience" title="Replay Opening">
+          <span class="btn-icon">↺</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 3D Card Scene & Book Flip Container -->
+    <div class="card-stage-wrapper">
+      <div class="card-3d-scene" id="card-3d-scene">
+        <div class="invitation-book" id="invitation-book" data-current-page="1">
+
+          <!-- ================= PAGE 1: CEREMONIAL BOARDING PASS ================= -->
+          <section class="card-page page-1 active" id="page-1">
+            <div class="card-frame">
+              <!-- Unique Aeronautical Ornate Corners -->
+              <div class="corner-ornament top-left">
+                <svg viewBox="0 0 50 50">
+                  <path d="M2 48 L2 12 A10 10 0 0 1 12 2 L48 2" fill="none" stroke="#0B3B60" stroke-width="2.5"/>
+                  <path d="M8 40 L8 16 A8 8 0 0 1 16 8 L40 8" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                  <circle cx="16" cy="16" r="3" fill="#0B3B60"/>
+                  <path d="M6 6 L22 22" stroke="#0B3B60" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="corner-ornament top-right">
+                <svg viewBox="0 0 50 50">
+                  <path d="M48 48 L48 12 A10 10 0 0 0 38 2 L2 2" fill="none" stroke="#0B3B60" stroke-width="2.5"/>
+                  <path d="M42 40 L42 16 A8 8 0 0 0 34 8 L10 8" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                  <circle cx="34" cy="16" r="3" fill="#0B3B60"/>
+                  <path d="M44 6 L28 22" stroke="#0B3B60" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="corner-ornament bottom-left">
+                <svg viewBox="0 0 50 50">
+                  <path d="M2 2 L2 38 A10 10 0 0 0 12 48 L48 48" fill="none" stroke="#0B3B60" stroke-width="2.5"/>
+                  <path d="M8 10 L8 34 A8 8 0 0 0 16 42 L40 42" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                  <circle cx="16" cy="34" r="3" fill="#0B3B60"/>
+                  <path d="M6 44 L22 28" stroke="#0B3B60" stroke-width="1.5"/>
+                </svg>
+              </div>
+              <div class="corner-ornament bottom-right">
+                <svg viewBox="0 0 50 50">
+                  <path d="M48 2 L48 38 A10 10 0 0 1 38 48 L2 48" fill="none" stroke="#0B3B60" stroke-width="2.5"/>
+                  <path d="M42 10 L42 34 A8 8 0 0 1 34 42 L10 42" fill="none" stroke="#D4AF37" stroke-width="1.5"/>
+                  <circle cx="34" cy="34" r="3" fill="#0B3B60"/>
+                  <path d="M44 44 L28 28" stroke="#0B3B60" stroke-width="1.5"/>
+                </svg>
+              </div>
+
+              <!-- Pass Layout: Main Body + Boarding Stub -->
+              <div class="pass-content-grid">
+                
+                <!-- Main Pass Body -->
+                <div class="pass-main-body">
+                  <!-- Parachute Vector Illustration -->
+                  <div class="floating-skydiver">
+                    <svg viewBox="0 0 160 260" class="skydiver-svg">
+                      <!-- Canopy -->
+                      <defs>
+                        <linearGradient id="chuteGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stop-color="#023059"/>
+                          <stop offset="25%" stop-color="#035AA6"/>
+                          <stop offset="25%" stop-color="#FFFFFF"/>
+                          <stop offset="50%" stop-color="#FFFFFF"/>
+                          <stop offset="50%" stop-color="#035AA6"/>
+                          <stop offset="75%" stop-color="#035AA6"/>
+                          <stop offset="75%" stop-color="#FFFFFF"/>
+                          <stop offset="100%" stop-color="#023059"/>
+                        </linearGradient>
+                      </defs>
+                      <path d="M10 90 C 20 15, 140 15, 150 90 C 120 70, 40 70, 10 90 Z" fill="url(#chuteGrad)" stroke="#0B3B60" stroke-width="3"/>
+                      <!-- Rib Lines -->
+                      <path d="M30 83 C 45 40, 60 25, 80 20 C 100 25, 115 40, 130 83" fill="none" stroke="#0B3B60" stroke-width="1.5"/>
+                      <path d="M55 77 C 65 40, 75 25, 80 20 C 85 25, 95 40, 105 77" fill="none" stroke="#0B3B60" stroke-width="1.5"/>
+                      <!-- Suspension lines -->
+                      <path d="M10 90 L 80 185" stroke="#0B3B60" stroke-width="1.2" opacity="0.8"/>
+                      <path d="M30 83 L 80 185" stroke="#0B3B60" stroke-width="1.2" opacity="0.8"/>
+                      <path d="M55 77 L 80 185" stroke="#0B3B60" stroke-width="1.2" opacity="0.8"/>
+                      <path d="M80 75 L 80 185" stroke="#0B3B60" stroke-width="1.2" opacity="0.8"/>
+                      <path d="M105 77 L 80 185" stroke="#0B3B60" stroke-width="1.2" opacity="0.8"/>
+                      <path d="M130 83 L 80 185" stroke="#0B3B60" stroke-width="1.2" opacity="0.8"/>
+                      <path d="M150 90 L 80 185" stroke="#0B3B60" stroke-width="1.2" opacity="0.8"/>
+                      <!-- Skydiver Silhouette -->
+                      <circle cx="80" cy="195" r="6" fill="#0B3B60"/>
+                      <path d="M74 201 L 86 201 L 83 222 L 77 222 Z" fill="#0B3B60"/>
+                      <path d="M74 204 L 68 188 L 74 187" stroke="#0B3B60" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                      <path d="M86 204 L 92 188 L 86 187" stroke="#0B3B60" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                      <path d="M78 222 L 72 245 L 67 245" stroke="#0B3B60" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                      <path d="M82 222 L 88 245 L 93 245" stroke="#0B3B60" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+                    </svg>
+                  </div>
+
+                  <!-- Paper Airplane Flight Trail -->
+                  <div class="flight-trail-art">
+                    <svg viewBox="0 0 150 80" class="trail-svg">
+                      <path d="M10 65 Q 60 65 80 35 T 130 20" fill="none" stroke="#0B3B60" stroke-width="1.5" stroke-dasharray="4,4"/>
+                      <g transform="translate(125, 8) rotate(-15)">
+                        <polygon points="0,15 25,0 12,18 0,15" fill="#0B3B60"/>
+                        <polygon points="12,18 25,0 20,22 12,18" fill="#1A538C"/>
+                      </g>
+                    </svg>
+                  </div>
+
+                  <!-- Header Crest -->
+                  <div class="ceremonial-crest">
+                    <div class="wings-emblem">
+                      <svg viewBox="0 0 160 70" class="crest-wings-svg">
+                        <!-- Propeller -->
+                        <ellipse cx="80" cy="35" rx="3.5" ry="30" fill="#1C2833"/>
+                        <!-- Propeller Hub -->
+                        <circle cx="80" cy="35" r="7" fill="#D4AF37" stroke="#1C2833" stroke-width="2"/>
+                        <!-- Left Wing Feathers -->
+                        <path d="M73 35 C 55 10, 20 8, 2 24 C 20 32, 45 35, 73 42 Z" fill="#0B3B60"/>
+                        <path d="M73 38 C 50 20, 25 22, 10 38 C 30 42, 52 44, 73 46 Z" fill="#185A9D"/>
+                        <path d="M73 42 C 55 32, 35 34, 22 48 C 40 50, 58 50, 73 49 Z" fill="#D4AF37"/>
+                        <!-- Right Wing Feathers -->
+                        <path d="M87 35 C 105 10, 140 8, 158 24 C 140 32, 115 35, 87 42 Z" fill="#0B3B60"/>
+                        <path d="M87 38 C 110 20, 135 22, 150 38 C 130 42, 108 44, 87 46 Z" fill="#185A9D"/>
+                        <path d="M87 42 C 105 32, 125 34, 138 48 C 120 50, 102 50, 87 49 Z" fill="#D4AF37"/>
+                      </svg>
+                    </div>
+                    <h1 class="club-title">AERO CLUB</h1>
+                    <div class="ribbon-banner">
+                      <span class="ribbon-text">VIGNAN</span>
+                    </div>
+                    <p class="motto-tagline">EXPLORE &bull; LEARN &bull; BUILD &bull; SOAR</p>
+                  </div>
+
+                  <!-- Invitation Headline -->
+                  <div class="invitation-hero">
+                    <p class="cordial-text">YOU ARE CORDIALLY INVITED TO THE</p>
+                    <div class="ceremony-type-lockup">
+                      <h2 class="oath-taking-title">OATH TAKING</h2>
+                      <span class="ceremony-script">Ceremony</span>
+                    </div>
+                  </div>
+
+                  <div class="decorative-separator">
+                    <span class="sep-line"></span>
+                    <span class="sep-diamond">&diams;</span>
+                    <span class="sep-line"></span>
+                  </div>
+
+                  <!-- Event Metadata Badges -->
+                  <div class="event-meta-row">
+                    <div class="meta-item date-item">
+                      <div class="meta-icon-box">
+                        <svg viewBox="0 0 24 24" class="meta-svg">
+                          <rect x="3" y="4" width="18" height="18" rx="2" fill="none" stroke="#0B3B60" stroke-width="2"/>
+                          <line x1="16" y1="2" x2="16" y2="6" stroke="#0B3B60" stroke-width="2"/>
+                          <line x1="8" y1="2" x2="8" y2="6" stroke="#0B3B60" stroke-width="2"/>
+                          <line x1="3" y1="10" x2="21" y2="10" stroke="#0B3B60" stroke-width="2"/>
+                          <circle cx="8" cy="14" r="1.5" fill="#0B3B60"/>
+                          <circle cx="12" cy="14" r="1.5" fill="#0B3B60"/>
+                          <circle cx="16" cy="14" r="1.5" fill="#0B3B60"/>
+                          <circle cx="8" cy="18" r="1.5" fill="#0B3B60"/>
+                          <circle cx="12" cy="18" r="1.5" fill="#0B3B60"/>
+                        </svg>
+                      </div>
+                      <div class="meta-details">
+                        <span class="meta-lbl">DATE</span>
+                        <strong class="meta-val">17<sup>th</sup> September</strong>
+                      </div>
+                    </div>
+
+                    <div class="meta-item time-item">
+                      <div class="meta-icon-box">
+                        <svg viewBox="0 0 24 24" class="meta-svg">
+                          <circle cx="12" cy="12" r="9" fill="none" stroke="#0B3B60" stroke-width="2"/>
+                          <polyline points="12 7 12 12 15 15" stroke="#0B3B60" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                      </div>
+                      <div class="meta-details">
+                        <span class="meta-lbl">TIME</span>
+                        <strong class="meta-val">10.40 am to 12.20 pm</strong>
+                      </div>
+                    </div>
+
+                    <div class="meta-item venue-item">
+                      <div class="meta-icon-box">
+                        <svg viewBox="0 0 24 24" class="meta-svg">
+                          <path d="M12 2 C8.13 2 5 5.13 5 9 C5 14.25 12 22 12 22 C12 22 19 14.25 19 9 C19 5.13 15.87 2 12 2 Z" fill="#0B3B60"/>
+                          <circle cx="12" cy="9" r="3" fill="#FFFFFF"/>
+                        </svg>
+                      </div>
+                      <div class="meta-details">
+                        <span class="meta-lbl">VENUE</span>
+                        <strong class="meta-val venue-text">Vignan Institute of<br>Technology and Science</strong>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Footer Value Note -->
+                  <div class="pass-footer">
+                    <p class="valued-text">YOUR PRESENCE IS VALUED</p>
+                  </div>
+                </div>
+
+                <!-- Perforated Boarding Stub (Ticket Right Flap) -->
+                <div class="pass-stub-section">
+                  <div class="perforation-divider">
+                    <span class="notch top-notch"></span>
+                    <span class="dashed-line"></span>
+                    <span class="notch bottom-notch"></span>
+                  </div>
+
+                  <div class="stub-body">
+                    <div class="stub-slogan">
+                      <p class="take-oath-quote">
+                        Take<br>
+                        the Oath,<br>
+                        <span class="quote-italic">Fly Towards<br>Your Dreams</span>
+                      </p>
+                    </div>
+
+                    <div class="stub-icon">
+                      <svg viewBox="0 0 40 40" class="mini-chute-svg">
+                        <path d="M5 20 C 8 5, 32 5, 35 20 Z" fill="#FFFFFF" stroke="#0B2B4A" stroke-width="1.5"/>
+                        <line x1="5" y1="20" x2="20" y2="35" stroke="#FFFFFF" stroke-width="1"/>
+                        <line x1="20" y1="20" x2="20" y2="35" stroke="#FFFFFF" stroke-width="1"/>
+                        <line x1="35" y1="20" x2="20" y2="35" stroke="#FFFFFF" stroke-width="1"/>
+                        <circle cx="20" cy="35" r="2.5" fill="#FFFFFF"/>
+                      </svg>
+                    </div>
+
+                    <!-- Barcode Section -->
+                    <div class="stub-barcode">
+                      <div class="barcode-bars"></div>
+                      <span class="barcode-no">AERO-2026-VITS</span>
+                    </div>
+
+                    <!-- Swipe Hint -->
+                    <div class="stub-action-hint">
+                      <span class="swipe-arrow">&rarr;</span>
+                      <span class="hint-label">Turn Page</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- ================= PAGE 2: VENUE & LOCATION ================= -->
+          <section class="card-page page-2" id="page-2">
+            <div class="card-frame">
+              <!-- Corner Ornaments -->
+              <div class="corner-ornament top-left"><svg viewBox="0 0 50 50"><path d="M2 48 L2 12 A10 10 0 0 1 12 2 L48 2" fill="none" stroke="#0B3B60" stroke-width="2.5"/><path d="M8 40 L8 16 A8 8 0 0 1 16 8 L40 8" fill="none" stroke="#D4AF37" stroke-width="1.5"/></svg></div>
+              <div class="corner-ornament top-right"><svg viewBox="0 0 50 50"><path d="M48 48 L48 12 A10 10 0 0 0 38 2 L2 2" fill="none" stroke="#0B3B60" stroke-width="2.5"/><path d="M42 40 L42 16 A8 8 0 0 0 34 8 L10 8" fill="none" stroke="#D4AF37" stroke-width="1.5"/></svg></div>
+              <div class="corner-ornament bottom-left"><svg viewBox="0 0 50 50"><path d="M2 2 L2 38 A10 10 0 0 0 12 48 L48 48" fill="none" stroke="#0B3B60" stroke-width="2.5"/><path d="M8 10 L8 34 A8 8 0 0 0 16 42 L40 42" fill="none" stroke="#D4AF37" stroke-width="1.5"/></svg></div>
+              <div class="corner-ornament bottom-right"><svg viewBox="0 0 50 50"><path d="M48 2 L48 38 A10 10 0 0 1 38 48 L2 48" fill="none" stroke="#0B3B60" stroke-width="2.5"/><path d="M42 10 L42 34 A8 8 0 0 1 34 42 L10 42" fill="none" stroke="#D4AF37" stroke-width="1.5"/></svg></div>
+
+              <div class="location-page-container">
+                <div class="page-inner-header">
+                  <span class="header-pre">DESTINATION & ACCESS</span>
+                  <h2 class="section-heading">Venue & Location</h2>
+                  <div class="heading-gold-divider"></div>
+                </div>
+
+                <div class="location-content-grid">
+                  <!-- Venue Info Card -->
+                  <div class="venue-info-card">
+                    <div class="venue-badge-icon">
+                      <svg viewBox="0 0 24 24" class="pin-svg">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#0B3B60"/>
+                      </svg>
+                    </div>
+                    <div class="venue-text-group">
+                      <h3 class="venue-name">Vignan Institute of Technology & Science</h3>
+                      <p class="venue-sub">Main Auditorium & Aero Innovation Field</p>
+                      <address class="venue-address">
+                        Deshmukhi Village, Pochampally Mandal,<br>
+                        Near Ramoji Film City, Yadadri Bhuvanagiri Dist,<br>
+                        Hyderabad, Telangana - 508284
+                      </address>
+                    </div>
+
+                    <!-- Quick Action Buttons -->
+                    <div class="action-buttons-group">
+                      <a href="https://maps.google.com/?q=Vignan+Institute+of+Technology+and+Science+Deshmukhi" target="_blank" rel="noopener noreferrer" class="btn-action btn-primary">
+                        <span class="btn-glyph">📍</span> Get Directions on Google Maps
+                      </a>
+                      
+                      <button class="btn-action btn-secondary" id="calendar-btn">
+                        <span class="btn-glyph">📅</span> Add to Calendar (.ics)
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Interactive / Stylized Map Card -->
+                  <div class="interactive-map-preview">
+                    <div class="map-container-frame">
+                      <iframe 
+                        title="VITS Location Map"
+                        src="https://maps.google.com/maps?q=Vignan%20Institute%20of%20Technology%20and%20Science%20Deshmukhi&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                        loading="lazy" 
+                        allowfullscreen>
+                      </iframe>
+                      <div class="map-overlay-banner">
+                        <span class="pulse-dot"></span>
+                        <span>Campus Gate & Parking Available</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Page Navigation & Pagination Dots -->
+    <footer class="bottom-pagination-bar">
+      <button class="nav-arrow-btn prev-btn" id="prev-btn" aria-label="Previous Page" disabled>
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+
+      <div class="pagination-dots" id="pagination-dots">
+        <button class="dot active" data-page="1" aria-label="Go to Page 1 (Invitation)"></button>
+        <button class="dot" data-page="2" aria-label="Go to Page 2 (Venue & Location)"></button>
+      </div>
+
+      <button class="nav-arrow-btn next-btn" id="next-btn" aria-label="Next Page">
+        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+      </button>
+    </footer>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
