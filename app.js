@@ -232,46 +232,54 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update Pagination Dots
-    dots.forEach((dot, idx) => {
-      if (idx + 1 === currentPage) {
-        dot.classList.add('active');
-      } else {
-        dot.classList.remove('active');
-      }
-    });
+    // Update Pagination Dots (if present)
+    if (dots && dots.length > 0) {
+      dots.forEach((dot, idx) => {
+        if (idx + 1 === currentPage) {
+          dot.classList.add('active');
+        } else {
+          dot.classList.remove('active');
+        }
+      });
+    }
 
-    // Update Nav Buttons
-    prevBtn.disabled = (currentPage === 1);
-    nextBtn.disabled = (currentPage === totalPages);
+    // Update Nav Buttons (if present)
+    if (prevBtn) prevBtn.disabled = (currentPage === 1);
+    if (nextBtn) nextBtn.disabled = (currentPage === totalPages);
 
     // Automatically restart 7-second countdown timer on EVERY page turn!
     startAutoFlipTimer(AUTO_FLIP_SECONDS);
   }
 
-  // Navigation Arrow Buttons
-  prevBtn.addEventListener('click', () => {
-    if (currentPage > 1) {
-      goToPage(currentPage - 1);
-    }
-  });
-
-  nextBtn.addEventListener('click', () => {
-    if (currentPage < totalPages) {
-      goToPage(currentPage + 1);
-    } else {
-      // Loop to page 1 if next clicked on last page
-      goToPage(1);
-    }
-  });
-
-  // Pagination Dot Click Navigation
-  dots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      const target = parseInt(dot.getAttribute('data-page'), 10);
-      goToPage(target);
+  // Navigation Arrow Buttons (if present)
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        goToPage(currentPage - 1);
+      }
     });
-  });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      if (currentPage < totalPages) {
+        goToPage(currentPage + 1);
+      } else {
+        // Loop to page 1 if next clicked on last page
+        goToPage(1);
+      }
+    });
+  }
+
+  // Pagination Dot Click Navigation (if present)
+  if (dots && dots.length > 0) {
+    dots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const target = parseInt(dot.getAttribute('data-page'), 10);
+        goToPage(target);
+      });
+    });
+  }
 
   // Perforated Stub Action Hint Click
   const stubAction = document.querySelector('.stub-action-hint');
