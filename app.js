@@ -176,20 +176,23 @@ document.addEventListener('DOMContentLoaded', () => {
     initAudio();
     playChime();
 
-    // 1. Part Blue Stage Curtains
+    // 1. Part Blue Stage Curtains (Slow, Grand 7.2s Theatre Opening)
     curtainStage.classList.add('is-open');
 
-    // 2. Pop up invitation card at majestic slower speed
+    // 2. Pop up invitation card at majestic slower speed (over 3.5s)
     setTimeout(() => {
       cardScene.classList.add('popped-up');
-      
-      // 3. Start 5.0s timer for automated page turn
-      startAutoFlipTimer(AUTO_FLIP_SECONDS);
-    }, 600);
+    }, 1000);
 
+    // 3. Start 7.0s auto-flip timer after grand entrance completes
+    setTimeout(() => {
+      startAutoFlipTimer(AUTO_FLIP_SECONDS);
+    }, 4500);
+
+    // 4. Mark curtain stage opened after full transition
     setTimeout(() => {
       curtainStage.classList.add('opened');
-    }, 2400);
+    }, 7500);
   }
 
   // Tap seal to open
