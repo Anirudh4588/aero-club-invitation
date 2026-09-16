@@ -34,6 +34,7 @@
 html, body {
   width: 100%;
   height: 100%;
+  height: 100dvh;
   overflow: hidden;
   background-color: #071E3D;
   font-family: var(--font-sans);
@@ -501,12 +502,14 @@ html, body {
   z-index: 10;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding: 16px 20px 20px;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 /* Top Navigation Bar */
@@ -712,6 +715,15 @@ html, body {
   display: flex;
   flex-direction: column;
   box-shadow: inset 0 0 20px rgba(11, 59, 96, 0.08);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.card-frame::-webkit-scrollbar {
+  display: none;
 }
 
 /* ==========================================================================
@@ -1559,144 +1571,453 @@ html, body {
 
 @media (max-width: 640px) {
   .invitation-app {
-    padding: 8px 10px 10px;
+    padding: 6px 8px 8px;
+    height: 100vh;
+    height: 100dvh;
+    box-sizing: border-box;
+    justify-content: flex-start;
   }
 
-  .card-stage-wrapper {
-    padding: 4px 0 0;
+  .top-nav-bar {
+    padding: 5px 12px;
+    margin-bottom: 6px;
+    border-radius: 25px;
+  }
+
+  .brand-logo-img {
+    width: 22px;
+    height: 22px;
   }
 
   .brand-title {
-    font-size: 0.95rem;
+    font-size: 0.88rem;
+    letter-spacing: 1.5px;
   }
 
   .brand-sub {
     display: none;
   }
 
+  .timer-badge {
+    padding: 2px 8px 2px 5px;
+  }
+
+  .timer-text {
+    font-size: 0.7rem;
+    min-width: 24px;
+  }
+
+  .icon-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+  }
+
+  .card-stage-wrapper {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    min-height: 0;
+  }
+
   .card-3d-scene {
-    height: calc(100vh - 72px);
-    max-height: 560px;
+    width: 100%;
+    height: 100%;
+    max-height: calc(100dvh - 56px);
   }
 
   .card-frame {
-    padding: 8px;
+    padding: 6px;
+    border-width: 2px;
+    border-radius: 14px;
   }
 
   .corner-ornament {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .corner-ornament.top-left { top: 3px; left: 3px; }
+  .corner-ornament.top-right { top: 3px; right: 3px; }
+  .corner-ornament.bottom-left { bottom: 3px; left: 3px; }
+  .corner-ornament.bottom-right { bottom: 3px; right: 3px; }
+
+  /* Page 1: Boarding Pass Mobile Layout */
+  .pass-content-grid {
+    flex-direction: column;
+    height: 100%;
+    border-radius: 10px;
   }
 
   .pass-main-body {
-    padding: 12px 10px 8px;
+    flex: 1;
+    padding: 8px 8px 4px;
+    justify-content: space-evenly;
+    min-height: 0;
   }
 
   .floating-skydiver {
-    width: 65px;
-    height: 110px;
-    left: 8px;
-    top: 20px;
+    width: 40px;
+    height: 68px;
+    left: 4px;
+    top: 8px;
+    opacity: 0.55;
   }
 
   .flight-trail-art {
-    width: 80px;
-    height: 40px;
-    right: 8px;
-    top: 15px;
+    width: 48px;
+    height: 24px;
+    right: 4px;
+    top: 8px;
+    opacity: 0.55;
   }
 
   .wings-emblem {
-    width: 85px;
-    height: 36px;
+    width: 65px;
+    height: 26px;
+    margin-bottom: 1px;
   }
 
   .club-title {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
+    letter-spacing: 2px;
+  }
+
+  .ribbon-banner {
+    padding: 1px 12px;
+    margin: 1px 0;
+  }
+
+  .ribbon-text {
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+  }
+
+  .motto-tagline {
+    font-size: 0.52rem;
+    letter-spacing: 1.5px;
+  }
+
+  .invitation-hero {
+    margin: 2px 0;
+  }
+
+  .cordial-text {
+    font-size: 0.62rem;
+    letter-spacing: 1.2px;
+    margin-bottom: 1px;
+  }
+
+  .ceremony-type-lockup {
+    gap: 6px;
   }
 
   .oath-taking-title {
-    font-size: 1.6rem;
+    font-size: 1.35rem;
     letter-spacing: 2px;
   }
 
   .ceremony-script {
-    font-size: 2.2rem;
+    font-size: 1.65rem;
   }
 
-  .event-meta-row {
-    grid-template-columns: 1fr;
+  .decorative-separator {
+    width: 60%;
+    margin: 1px 0 3px;
     gap: 6px;
   }
 
+  /* 2-column event metadata layout saves over 45px vertical height */
+  .event-meta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    width: 100%;
+    max-width: 100%;
+    margin: 2px 0;
+  }
+
+  .date-item {
+    grid-column: 1;
+  }
+
+  .time-item {
+    grid-column: 2;
+  }
+
+  .venue-item {
+    grid-column: 1 / span 2;
+  }
+
   .meta-item {
-    padding: 4px 8px;
+    padding: 3px 6px;
+    gap: 5px;
+    border-radius: 6px;
+  }
+
+  .meta-icon-box {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+  }
+
+  .meta-svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .meta-lbl {
+    font-size: 0.52rem;
+    letter-spacing: 1px;
   }
 
   .meta-val {
-    font-size: 0.78rem;
+    font-size: 0.7rem;
+    line-height: 1.15;
+  }
+
+  .venue-text {
+    font-size: 0.64rem;
+  }
+
+  .pass-footer {
+    padding-top: 2px;
+  }
+
+  .valued-text {
+    font-size: 0.65rem;
+    letter-spacing: 1.5px;
+  }
+
+  /* Sleek Horizontal Boarding Stub on Mobile */
+  .pass-stub-section {
+    flex: none;
+    height: auto;
+    flex-direction: row;
+    padding: 6px 10px;
+    border-left: none;
+    border-top: 1px dashed rgba(255, 255, 255, 0.35);
+    background: linear-gradient(90deg, #092C4E 0%, #0B3B60 100%);
+  }
+
+  .perforation-divider {
+    display: none;
+  }
+
+  .stub-body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .stub-slogan {
+    margin: 0;
+    text-align: left;
+  }
+
+  .take-oath-quote {
+    font-size: 0.8rem;
+    line-height: 1.1;
+  }
+
+  .take-oath-quote br {
+    display: none;
+  }
+
+  .quote-italic {
+    font-size: 0.8rem;
+    display: inline;
+    margin-left: 2px;
+  }
+
+  .quote-italic br {
+    display: none;
+  }
+
+  .stub-icon {
+    display: none;
+  }
+
+  .stub-barcode {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .barcode-bars {
+    width: 65px;
+    height: 15px;
+  }
+
+  .barcode-no {
+    font-size: 0.48rem;
+    letter-spacing: 1px;
+    margin-top: 1px;
+  }
+
+  .stub-action-hint {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.58rem;
+    letter-spacing: 0.5px;
+  }
+
+  .swipe-arrow {
+    font-size: 0.85rem;
+  }
+
+  /* Page 2: Venue Mobile */
+  .location-page-container {
+    padding: 8px 10px 6px;
+    gap: 6px;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .header-pre {
+    font-size: 0.6rem;
+    letter-spacing: 1.5px;
+  }
+
+  .section-heading {
+    font-size: 1.25rem;
+  }
+
+  .heading-gold-divider {
+    width: 40px;
+    height: 2px;
+    margin: 2px auto 0;
+  }
+
+  .location-content-grid {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    flex: 1;
+    min-height: 0;
   }
 
   .venue-info-card {
-    padding: 10px 12px;
+    padding: 8px 10px;
+    border-radius: 8px;
+  }
+
+  .venue-badge-icon {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 3px;
+  }
+
+  .pin-svg {
+    width: 15px;
+    height: 15px;
   }
 
   .venue-name {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
+  }
+
+  .venue-sub {
+    font-size: 0.68rem;
+    margin: 1px 0 3px;
   }
 
   .venue-address {
-    font-size: 0.7rem;
-    margin-bottom: 8px;
+    font-size: 0.62rem;
+    line-height: 1.25;
+    margin-bottom: 5px;
+  }
+
+  .action-buttons-group {
+    flex-direction: row;
+    gap: 5px;
   }
 
   .btn-action {
-    padding: 7px 10px;
-    font-size: 0.74rem;
+    padding: 5px 8px;
+    font-size: 0.66rem;
+    flex: 1;
   }
 
   .interactive-map-preview {
-    min-height: 120px;
+    min-height: 90px;
+    flex: 1;
   }
 
   .map-container-frame {
-    min-height: 120px;
+    min-height: 90px;
   }
 
-  /* Thank You Slide Mobile */
+  .map-overlay-banner {
+    padding: 3px 8px;
+    font-size: 0.6rem;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+  }
+
+  /* Page 3: Thank You Mobile */
   .thankyou-page-container {
-    padding: 12px 10px 8px;
+    padding: 10px 10px 8px;
+    height: 100%;
+    justify-content: space-between;
+  }
+
+  .thankyou-logo {
+    width: 22px;
+    height: 22px;
+  }
+
+  .thankyou-pre {
+    font-size: 0.6rem;
+    letter-spacing: 1.5px;
   }
 
   .thankyou-title {
-    font-size: 1.6rem;
+    font-size: 1.45rem;
     letter-spacing: 2px;
   }
 
   .thankyou-script {
-    font-size: 1.6rem;
+    font-size: 1.35rem;
   }
 
   .thankyou-message-box {
-    padding: 8px 10px;
+    padding: 6px 8px;
   }
 
   .thankyou-quote {
-    font-size: 0.8rem;
-    margin-bottom: 3px;
+    font-size: 0.76rem;
+    margin-bottom: 2px;
   }
 
   .thankyou-desc {
-    font-size: 0.68rem;
-    line-height: 1.35;
+    font-size: 0.64rem;
+    line-height: 1.3;
   }
 
   .event-reminder-pill {
-    padding: 4px 10px;
+    padding: 3px 10px;
   }
 
   .pill-text {
-    font-size: 0.62rem;
+    font-size: 0.58rem;
+  }
+
+  .sig-title {
+    font-size: 0.78rem;
+  }
+
+  .sig-sub {
+    font-size: 0.58rem;
   }
 
   .thankyou-art-left, .thankyou-art-right {
