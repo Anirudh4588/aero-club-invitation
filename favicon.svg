@@ -1,0 +1,51 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E3860"/>
+      <stop offset="50%" stop-color="#071E3D"/>
+      <stop offset="100%" stop-color="#031021"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF2B2"/>
+      <stop offset="35%" stop-color="#D4AF37"/>
+      <stop offset="70%" stop-color="#AA820A"/>
+      <stop offset="100%" stop-color="#5E4500"/>
+    </linearGradient>
+    <linearGradient id="wingGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FDE88E"/>
+      <stop offset="100%" stop-color="#C59B27"/>
+    </linearGradient>
+    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#D4AF37" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Ring with Gold Border -->
+  <circle cx="64" cy="64" r="60" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="4"/>
+  <circle cx="64" cy="64" r="54" fill="none" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.2" stroke-dasharray="3 3"/>
+
+  <!-- Spread Aero Wings -->
+  <!-- Left Wing -->
+  <path d="M64 68 C50 48, 22 45, 12 58 C26 64, 46 66, 64 74 Z" fill="url(#wingGrad)" filter="url(#goldGlow)"/>
+  <path d="M64 71 C52 56, 32 54, 20 66 C32 70, 48 72, 64 76 Z" fill="#1C67A8" opacity="0.8"/>
+  <path d="M64 74 C54 64, 40 62, 28 72 C38 75, 52 76, 64 78 Z" fill="url(#goldGrad)"/>
+
+  <!-- Right Wing -->
+  <path d="M64 68 C78 48, 106 45, 116 58 C102 64, 82 66, 64 74 Z" fill="url(#wingGrad)" filter="url(#goldGlow)"/>
+  <path d="M64 71 C76 56, 96 54, 108 66 C96 70, 80 72, 64 76 Z" fill="#1C67A8" opacity="0.8"/>
+  <path d="M64 74 C74 64, 88 62, 100 72 C90 75, 76 76, 64 78 Z" fill="url(#goldGrad)"/>
+
+  <!-- Center Supersonic Jet Ascending -->
+  <polygon points="64,22 69,54 78,76 64,72 50,76 59,54" fill="#FFFFFF" filter="url(#goldGlow)"/>
+  <!-- Jet Cockpit / Canopy -->
+  <polygon points="64,32 66,48 64,52 62,48" fill="#0B3B60"/>
+  <!-- Jet Tail Fin -->
+  <polygon points="64,56 65,72 64,74 63,72" fill="url(#goldGrad)"/>
+  
+  <!-- Propeller / Core Hub -->
+  <circle cx="64" cy="74" r="5" fill="#071E3D" stroke="url(#goldGrad)" stroke-width="2"/>
+  <circle cx="64" cy="74" r="2" fill="#D4AF37"/>
+
+  <!-- Guiding North Star -->
+  <polygon points="64,11 65.5,15.5 70,16 66.5,19 67.5,23.5 64,21 60.5,23.5 61.5,19 58,16 62.5,15.5" fill="url(#goldGrad)"/>
+</svg>
