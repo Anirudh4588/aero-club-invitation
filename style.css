@@ -1320,6 +1320,185 @@ html, body {
 
 
 /* ==========================================================================
+   PAGE 3: Thank You Slide
+   ========================================================================== */
+.thankyou-page-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  padding: 22px 32px 16px;
+  background: radial-gradient(ellipse at 50% 15%, #FFFFFF 0%, #F3F8FD 50%, #E3EFF9 100%);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Floating mini soaring jets */
+.thankyou-art-left {
+  position: absolute;
+  top: 18px;
+  left: 20px;
+  width: 65px;
+  height: 65px;
+  opacity: 0.65;
+  animation: floatArtLeft 4s ease-in-out infinite alternate;
+}
+
+.thankyou-art-right {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  width: 65px;
+  height: 65px;
+  opacity: 0.65;
+  animation: floatArtRight 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatArtLeft {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(4px, -6px); }
+}
+
+@keyframes floatArtRight {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-4px, -6px); }
+}
+
+.mini-soaring-jet {
+  width: 100%;
+  height: 100%;
+}
+
+.thankyou-badge-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+.thankyou-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(11, 59, 96, 0.3);
+}
+
+.thankyou-pre {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: var(--color-royal-blue);
+  text-transform: uppercase;
+}
+
+.thankyou-hero {
+  margin: 4px 0 2px;
+  z-index: 2;
+}
+
+.thankyou-title {
+  font-family: var(--font-serif);
+  font-size: 2.35rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #082845;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(11, 59, 96, 0.15);
+  line-height: 1;
+}
+
+.thankyou-script {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: #0B3B60;
+  font-weight: 400;
+  line-height: 1;
+  display: block;
+  margin-top: 2px;
+  transform: rotate(-2deg);
+}
+
+.thankyou-message-box {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(11, 59, 96, 0.15);
+  border-radius: 12px;
+  padding: 12px 20px;
+  max-width: 580px;
+  box-shadow: 0 4px 15px rgba(11, 59, 96, 0.06);
+  z-index: 2;
+}
+
+.thankyou-quote {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-style: italic;
+  font-weight: 700;
+  color: #0B3B60;
+  margin-bottom: 5px;
+  letter-spacing: 0.5px;
+}
+
+.thankyou-desc {
+  font-size: 0.8rem;
+  color: #4A6B8A;
+  line-height: 1.45;
+}
+
+.thankyou-desc strong {
+  color: #0B3B60;
+}
+
+.event-reminder-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #0B3B60 0%, #1A538C 100%);
+  color: #FFFFFF;
+  padding: 5px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(11, 59, 96, 0.25);
+  z-index: 2;
+}
+
+.pill-icon {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+}
+
+.pill-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.thankyou-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  z-index: 2;
+}
+
+.sig-title {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: #0B3B60;
+}
+
+.sig-sub {
+  font-size: 0.68rem;
+  color: #4A6B8A;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+/* ==========================================================================
    Bottom Navigation & Pagination Dots
    ========================================================================== */
 .bottom-pagination-bar {
@@ -1547,5 +1726,45 @@ html, body {
 
   .map-container-frame {
     min-height: 120px;
+  }
+
+  /* Thank You Slide Mobile */
+  .thankyou-page-container {
+    padding: 12px 10px 8px;
+  }
+
+  .thankyou-title {
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+  }
+
+  .thankyou-script {
+    font-size: 1.6rem;
+  }
+
+  .thankyou-message-box {
+    padding: 8px 10px;
+  }
+
+  .thankyou-quote {
+    font-size: 0.8rem;
+    margin-bottom: 3px;
+  }
+
+  .thankyou-desc {
+    font-size: 0.68rem;
+    line-height: 1.35;
+  }
+
+  .event-reminder-pill {
+    padding: 4px 10px;
+  }
+
+  .pill-text {
+    font-size: 0.62rem;
+  }
+
+  .thankyou-art-left, .thankyou-art-right {
+    display: none;
   }
 }

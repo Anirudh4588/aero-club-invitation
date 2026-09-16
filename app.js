@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const book = document.getElementById('invitation-book');
   const pages = [
     document.getElementById('page-1'),
-    document.getElementById('page-2')
+    document.getElementById('page-2'),
+    document.getElementById('page-3')
   ];
   const prevBtn = document.getElementById('prev-btn');
   const nextBtn = document.getElementById('next-btn');
@@ -29,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const AUTO_FLIP_SECONDS = 7.0; // 7.0 seconds per page
   const CIRCLE_CIRCUMFERENCE = 69.1; // 2 * Math.PI * 11
   let currentPage = 1;
-  const totalPages = 2;
+  const totalPages = 3;
   let autoTimerInterval = null;
   let timerPaused = false;
   let soundEnabled = true;
