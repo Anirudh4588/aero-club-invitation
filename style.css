@@ -1119,167 +1119,7 @@ html, body {
 }
 
 /* ==========================================================================
-   PAGE 2: Ceremony Schedule & Highlights
-   ========================================================================== */
-.schedule-page-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  padding: 16px 24px 14px;
-  background: radial-gradient(ellipse at 50% 10%, #FFFFFF 0%, #F1F7FC 60%, #E2EEF8 100%);
-  border-radius: 12px;
-}
-
-.page-inner-header {
-  text-align: center;
-}
-
-.header-pre {
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: var(--color-azure-sky);
-  text-transform: uppercase;
-}
-
-.section-heading {
-  font-family: var(--font-serif);
-  font-size: 1.85rem;
-  font-weight: 800;
-  letter-spacing: 2px;
-  color: #0B3B60;
-  margin: 2px 0;
-}
-
-.heading-gold-divider {
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
-  margin: 4px auto 0;
-  border-radius: 2px;
-}
-
-/* Timeline */
-.timeline-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin: 8px 0;
-  position: relative;
-}
-
-.timeline-grid::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 95px;
-  width: 2px;
-  background: linear-gradient(180deg, #D4AF37, #0B3B60, #D4AF37);
-}
-
-.timeline-item {
-  display: flex;
-  align-items: center;
-  position: relative;
-  gap: 16px;
-}
-
-.time-stamp {
-  width: 85px;
-  font-size: 0.8rem;
-  font-weight: 800;
-  color: #0B3B60;
-  text-align: right;
-  letter-spacing: 0.5px;
-}
-
-.timeline-dot {
-  width: 14px;
-  height: 14px;
-  min-width: 14px;
-  border-radius: 50%;
-  background: #FFFFFF;
-  border: 3px solid #0B3B60;
-  box-shadow: 0 0 8px rgba(11, 59, 96, 0.4);
-  z-index: 2;
-}
-
-.timeline-item.highlight-item .timeline-dot {
-  background: #D4AF37;
-  border-color: #0B3B60;
-  transform: scale(1.25);
-  box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
-}
-
-.timeline-card {
-  flex: 1;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(11, 59, 96, 0.12);
-  padding: 6px 14px;
-  border-radius: 8px;
-  box-shadow: 0 3px 8px rgba(11, 59, 96, 0.05);
-  text-align: left;
-}
-
-.timeline-item.highlight-item .timeline-card {
-  background: linear-gradient(135deg, #0B3B60 0%, #154877 100%);
-  color: #FFFFFF;
-  border-color: var(--color-gold);
-}
-
-.timeline-card h3 {
-  font-size: 0.88rem;
-  font-weight: 800;
-  color: #0B3B60;
-  margin-bottom: 2px;
-}
-
-.timeline-item.highlight-item .timeline-card h3 {
-  color: #FFFFFF;
-}
-
-.timeline-card p {
-  font-size: 0.74rem;
-  color: #4A6B8A;
-  line-height: 1.25;
-}
-
-.timeline-item.highlight-item .timeline-card p {
-  color: #E0EBF5;
-}
-
-.badge-gold {
-  display: inline-block;
-  font-size: 0.58rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  color: #0B2B4A;
-  background: #D4AF37;
-  padding: 2px 6px;
-  border-radius: 4px;
-  margin-bottom: 3px;
-}
-
-.oath-quote-banner {
-  background: rgba(11, 59, 96, 0.06);
-  border-left: 3px solid #D4AF37;
-  padding: 6px 14px;
-  border-radius: 0 8px 8px 0;
-  text-align: center;
-}
-
-.oath-quote-text {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 0.82rem;
-  color: #0B3B60;
-  letter-spacing: 0.5px;
-}
-
-/* ==========================================================================
-   PAGE 3: Venue, Map & RSVP
+   PAGE 2: Venue, Map & Location
    ========================================================================== */
 .location-page-container {
   display: flex;
@@ -1422,6 +1262,14 @@ html, body {
   width: 100%;
   height: 100%;
   border: 0;
+  /* Allow swipe gestures to pass through on mobile;
+     map is interactive via "Get Directions" button */
+  pointer-events: none;
+}
+
+/* Re-enable map interaction on desktop hover */
+.map-container-frame:hover iframe {
+  pointer-events: auto;
 }
 
 .map-overlay-banner {
@@ -1455,42 +1303,6 @@ html, body {
   50% { transform: scale(1.4); opacity: 0.6; }
 }
 
-.rsvp-contact-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 8px;
-  border-top: 1px solid rgba(11, 59, 96, 0.2);
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.contact-pill {
-  font-size: 0.75rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.pill-label {
-  color: #4A6B8A;
-  font-weight: 700;
-}
-
-.pill-val {
-  color: #0B3B60;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.rsvp-status-badge {
-  font-size: 0.72rem;
-  font-weight: 700;
-  color: #D4AF37;
-  background: #0B3B60;
-  padding: 4px 10px;
-  border-radius: 12px;
-}
 
 /* ==========================================================================
    Bottom Navigation & Pagination Dots
@@ -1693,23 +1505,6 @@ html, body {
 
   .meta-val {
     font-size: 0.78rem;
-  }
-
-  .timeline-grid::before {
-    left: 70px;
-  }
-
-  .time-stamp {
-    width: 65px;
-    font-size: 0.7rem;
-  }
-
-  .timeline-card h3 {
-    font-size: 0.78rem;
-  }
-
-  .timeline-card p {
-    font-size: 0.68rem;
   }
 
   .venue-info-card {

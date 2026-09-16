@@ -1,7 +1,7 @@
 /**
  * Aero Club Vignan - Oath Taking Ceremony
  * Interactive Digital Invitation Engine
- * Version 2.0: 5.0s Continuous Auto-Timer, Multi-Aircraft Sky Fleet & Advanced Swipe Gestures
+ * Version 2.1: 7.0s Continuous Auto-Timer, Multi-Aircraft Sky Fleet & Advanced Swipe Gestures
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================
-  // Automated 5.0s Page Turn Timer Engine
+  // Automated 7.0s Page Turn Timer Engine
   // ==========================================
   function startAutoFlipTimer(durationSeconds = AUTO_FLIP_SECONDS) {
     clearAutoTimer();
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (elapsedMs >= totalMs) {
         clearAutoTimer();
-        // Turn to next page in sequence (loops back to Page 1 from Page 3)
+        // Turn to next page in sequence (loops back to Page 1 from last page)
         const nextPage = (currentPage % totalPages) + 1;
         goToPage(nextPage);
       }
@@ -209,8 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Page Transition Engine (Smooth 3D Flip)
   // ==========================================
   function goToPage(targetPage) {
-    if (targetPage < 1 || targetPage > totalPages || targetPage === currentPage) return;
-    playWhoosh();
+    if (targetPage < 1 || targetPage > totalPages) return;
+    // Allow same-page navigation to restart the auto-flip timer
+    if (targetPage !== currentPage) {
+      playWhoosh();
+    }
 
     currentPage = targetPage;
     book.setAttribute('data-current-page', currentPage);
@@ -241,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
     prevBtn.disabled = (currentPage === 1);
     nextBtn.disabled = (currentPage === totalPages);
 
-    // Automatically restart 5-second countdown timer on EVERY page turn!
+    // Automatically restart 7-second countdown timer on EVERY page turn!
     startAutoFlipTimer(AUTO_FLIP_SECONDS);
   }
 
@@ -442,12 +445,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ].join('\r\n');
 
       const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
+      link.href = url;
       link.setAttribute('download', 'Aero_Club_Oath_Taking_Ceremony.ics');
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      // Revoke blob URL to prevent memory leak
+      window.URL.revokeObjectURL(url);
     });
   }
 
